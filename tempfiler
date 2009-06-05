@@ -1,0 +1,12 @@
+#!/bin/sh
+
+FNAME=$1
+
+TEMP=`date +%Y-%m-%d`/`dd if=/dev/random bs=8 count=1 2>/dev/null| mimencode`
+
+ssh fsck.com "cd ~/public_html/ && \
+mkdir -p tmp/$TEMP " && \
+scp "$FNAME" "fsck.com:public_html/tmp/$TEMP" >/dev/null && \
+echo "http://fsck.com/~jesse/tmp/${TEMP}/`basename $FNAME`" |pbcopy
+pbpaste
+
