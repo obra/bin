@@ -1,0 +1,8 @@
+#!/bin/sh
+CMD='--tag action';
+if [ "x$1" != "x" ]; then 
+   CMD="$@"
+fi
+
+~/bin/todo.pl $CMD download ; vim tasks.txt ; todo.pl upload tasks.txt
+exec $0 $@
