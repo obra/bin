@@ -1,0 +1,63 @@
+#!/usr/bin/env perl
+
+use YAML;
+ my $res = Net::HackedBonjour->new('presence','tcp','local') ;
+        printf "-- %s (%s) ---\n", $res->service, $res->protocol;
+while (1) {
+    sleep 30;
+	my @entries = $res->discover;
+    warn "Discovered";
+	foreach my $entry ( @entries) {
+        print $entry->name."\n";
+        open(my $file, ">", '/Users/jesse/ichats/'.$entry->name) || die $!;
+        my $yaml = YAML::Dump($data);
+        print $file $yaml || die $!;
+        print    $yaml;
+        print "=" x 50;
+        print "\n";
+}
+}
+
+
+package Net::HackedBonjour;
+use base qw/Net::Bonjour/;
+
+sub discover {
+        my $self = shift;
+
+        my @list;
+        my $ptrs = [];
+        warn "Refreshing DNS";
+        if ( $self->domain(@_) eq 'local' ) {
+                @list = $self->mdns_refresh;
+        } else {
+                @list = $self->dns_refresh;
+        }
+        warn YAML::Dump(\@list);
+my @newlist;
+    warn "Querying for records";
+        foreach my $x ( 0..$#list ) {
+                my $host = Net::Bonjour::Entry->new($list[$x]);
+ my $username = $list[$x];
+ $username =~ s/\._presence.*$//g;
+ $username =~ s/\\(\d+)/chr($1)/ge;
+ $username =~ s/\\//g;
+ if (-f '/Users/jesse/ichats/'.$username) {
+
+ warn "skipping  $username";
+ next;
+   } 
+ warn "Querying $username";
+        $host->dns_server($self->{'_dns_server'});
+        $host->dns_port($self->{'_dns_port'});
+        $host->fetch;
+
+        open(my $file, ">", '/Users/jesse/ichats/'.$username) || die $!;
+                my $yaml = YAML::Dump({$host->all_attrs});
+                        print $file $yaml || die $!;
+
+
+    }
+        $self->{'_results'} = [ @newlist ];
+        return (@newlist);
+}
