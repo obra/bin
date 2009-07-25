@@ -1,0 +1,3 @@
+rsync -avz j@diesel.bestpractical.com:mail/.archives.200[6789]* ~/mail/work/ &
+rsync -avz jesse@fsck.com:mail/.archives.200[6789]* ~/mail/home/ &
+#mairix
