@@ -1,0 +1,57 @@
+#!/usr/bin/perl
+my $data = <<EOF;
+A	Alfa (ICAO, ITU, IMO, FAA) Alpha (ANSI)	AL FAH	ˈælfɑ
+B	Bravo	BRAH VOH	ˈbrɑːˈvo
+C	Charlie	CHAR LEE  or SHAR LEE	ˈtʃɑːli  orˈʃɑːli
+D	Delta	DELL TAH	ˈdeltɑ
+E	Echo	ECK OH	ˈeko
+F	Foxtrot	FOKS TROT	ˈfɔkstrɔt
+G	Golf	GOLF	gʌlf
+H	Hotel	HO TELL (ICAO) HOH TELL (ITU, IMO, FAA)	hoːˈtel
+I	India	IN DEE AH	ˈindiˑɑ
+J	Juliett (ICAO, ITU, IMO, FAA) Juliet (ANSI)	JEW LEE ETT	ˈdʒuːliˑˈet
+K	Kilo	KEY LOH	ˈkiːlo
+L	Lima	LEE MAH	ˈliːmɑ
+M	Mike	MIKE	mɑik
+N	November	NO VEM BER	noˈvembə
+O	Oscar	OSS CAH	ˈɔskɑ
+P	Papa	PAH PAH	pəˈpɑ
+Q	Quebec	KEH BECK	keˈbek
+R	Romeo	ROW ME OH	ˈroːmiˑo
+S	Sierra	SEE AIR RAH (ICAO, ITU, IMO) SEE AIR AH (FAA)	siˈerɑ
+T	Tango	TANG GO	ˈtængo [sic]
+U	Uniform	YOU NEE FORM  or OO NEE FORM	ˈjuːnifɔːm  orˈuːnifɔrm [sic]
+V	Victor	VIK TAH	ˈviktɑ
+W	Whiskey	WISS KEY	ˈwiski
+X	X-ray or Xray	ECKS RAY (ICAO, ITU) ECKS RAY (IMO, FAA)	ˈeksˈrei
+Y	Yankee	YANG KEY	ˈjænki [sic]
+Z	Zulu	ZOO LOO	ˈzuːluː
+0	Zero (FAA) Nadazero (ITU, IMO)	ZE RO (ICAO, FAA) NAH-DAH-ZAY-ROH (ITU, IMO)	—
+1	One (FAA) Unaone (ITU, IMO)	WUN (ICAO, FAA) OO-NAH-WUN (ITU, IMO)	—
+2	Two (FAA) Bissotwo (ITU, IMO)	TOO (ICAO, FAA) BEES-SOH-TOO (ITU, IMO)	—
+3	Three (FAA) Terrathree (ITU, IMO)	TREE (ICAO, FAA) TAY-RAH-TREE (ITU, IMO)	—
+4	Four (FAA) Kartefour (ITU, IMO)	FOW ER (ICAO, FAA) KAR-TAY-FOWER (ITU, IMO)	—
+5	Five (FAA) Pantafive (ITU, IMO)	FIFE (ICAO, FAA) PAN-TAH-FIVE (ITU, IMO)	—
+6	Six (FAA) Soxisix (ITU, IMO)	SIX (ICAO, FAA) SOK-SEE-SIX (ITU, IMO)	—
+7	Seven (FAA) Setteseven (ITU, IMO)	SEV EN (ICAO, FAA) SAY-TAY-SEVEN (ITU, IMO)	—
+8	Eight (FAA) Oktoeight (ITU, IMO)	AIT (ICAO, FAA) OK-TOH-AIT (ITU, IMO)	—
+9	Nine (FAA) Novenine (ITU, IMO) (No 'r' in spellings)	NIN ER (ICAO, FAA) NO-VAY-NINER (ITU, IMO)	—
+
+EOF
+
+my $hash;
+for my $line (split(/\n/,$data)) {
+    $line =~ /(.)\s*(.*)$/;
+    $hash{$1} = $2;
+}
+
+my $word = shift @ARGV;
+
+for my $letter  (map { uc }split(//,$word) ) {
+    if ($hash{$letter})  {
+        print $hash{$letter} . "\n";
+    } else {
+        print " - SPACE - NO PHONETIC FOR $letter\n";
+    }
+}
+
