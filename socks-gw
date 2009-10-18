@@ -1,0 +1,4 @@
+#!/bin/sh
+# Filename: ~/bin/socks-gw
+# This script connects to a SOCKS proxy using connect.c
+~/bin/connect -S localhost:9876 $@
