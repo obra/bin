@@ -1,0 +1,8 @@
+#!/bin/sh
+adb forward tcp:12345 tcp:12345
+adb shell mkdir /data/local/bin
+adb push /home/jesse/git/github/mine/bin/proxup /data/local/bin
+adb shell chmod 755 /data/local/bin/proxup
+adb shell /data/local/bin/proxup&
+sleep 3
+ssh -D9876 -p 12345 localhost

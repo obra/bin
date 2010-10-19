@@ -1,3 +1,3 @@
-rsync -avz --progress j@diesel.bestpractical.com:mail/.archives.200[6789]* ~/mail/work/ 
-rsync -avz --progress jesse@fsck.com:mail/.archives.200[6789]* ~/mail/home/ 
-#mairix
+rsync -avz --delete --progress j@shell.bestpractical.com:mail/.archives.20[01[06789]* ~/mail/work/ 
+rsync -avz --delete --progress jesse@fsck.com:mail/.archives.20[01][06789]* ~/mail/home/ 
+notmuch new

