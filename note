@@ -1,0 +1,1 @@
+cd ~/Dropbox/notes && vi `date +%Y-%m-%d`-$1
