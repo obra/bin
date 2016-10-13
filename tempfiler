@@ -11,5 +11,5 @@ chmod o-r tmp/$TEMP
 scp "$FNAME" "fsck.com:public_html/tmp/$TEMP" >/dev/null && \
 echo "http://fsck.com/~jesse/tmp/${TEMP}/`basename $FNAME`" 
 if [ "fnord$DISPLAY" != "fnord" ]; then
-	echo "http://fsck.com/~jesse/tmp/${TEMP}/`basename $FNAME`" |pbcopy
+	echo "http://fsck.com/~jesse/tmp/${TEMP}/`basename $FNAME`" |xsel -b
 fi
