@@ -1,0 +1,3 @@
+USER=$1
+sudo /bin/loginctl unlock-sessions
+sudo /bin/chvt `ps aux |grep $USER |grep Xorg|perl -p -e 'if ($_ =~ /^.* vt(\d) .*$/gismx) { print $1}; exit'`

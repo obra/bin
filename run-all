@@ -1,0 +1,10 @@
+for d in ./*/ 
+do  
+echo $d
+if [ "$d" != "./Kaleidoscope-Plugin/" ]
+ then
+# (cd "$d" && git co master && git pull && cp ../Kaleidoscope-Plugin/build/Makefile.sample Makefile && git commit Makefile -m "Update Makefile to fix OS X build" )
+ (cd "$d" && git push )
+fi
+done
+

@@ -1,0 +1,2 @@
+sudo launchctl unlock-sessions
+sudo chvt `ps aux |grep kbio |grep Xorg|perl -p -e 'if ($_ =~ /^.* vt(\d) .*$/gismx) { print $1}; exit'`
