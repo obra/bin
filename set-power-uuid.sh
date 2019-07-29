@@ -53,5 +53,9 @@ main() {
     echo "Success" >&2
 }
 
+if [ -z "$*" ]; then
+    main "63BE270F-1C11-48FD-A6F7-3AF253FF3E2D"
+else
+    main "$@"
+fi
 
-main "$@"
